@@ -9,12 +9,13 @@ set $koyugri	#333333
 set $siyah	#2d2d2d
 
 #Pencere Renkler
-client.focused		$anarenk $anarenk $beyaz   $siyah
-client.focused_inactive	$anarenk $koyugri $siyah   $anarenk	
-client.unfocused	$anarenk $koyugri $anarenk $siyah 
+client.focused		$anarenk $anarenk $beyaz   $anarenk
+client.focused_inactive	$anarenk $koyugri $siyah   $koyugri	
+client.unfocused	$anarenk $koyugri $anarenk $koyugri 
+
+exec feh --bg-scale /home/erkanmdr/resimler/orman.jpg
 
 font pango:bitocrafull, icons 8
-
 floating_modifier $mod
 
 bindsym $mod+Shift+t exec urxvt
@@ -110,52 +111,55 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
-# resize window (you can also use the mouse for that)
-mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
-
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym scedilla resize grow width 10 px or 10 ppt
-
-        # same bindings, but for the arrow keys
+# Yeniden Boyutlandır
+mode "boyutlandır" {
         bindsym Left resize shrink width 10 px or 10 ppt
         bindsym Down resize grow height 10 px or 10 ppt
         bindsym Up resize shrink height 10 px or 10 ppt
         bindsym Right resize grow width 10 px or 10 ppt
 
-        # back to normal: Enter or Escape
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
 
-bindsym $mod+r mode "resize"
+bindsym $mod+r mode "boyutlandır"
 
 
-#Pencere 
+# Pencere 
 new_window pixel 2
 new_float pixel 2
 
+# Pencere Kuralları
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="(?i)telegram"] floating enable
+
+# Uygulama Başlatıcı
+bindsym Ctrl+$mod+1 exec inox
+bindsym Ctrl+$mod+2 exec thunar
+bindsym Ctrl+$mod+3 exec telegram-desktop
+
+
+
+
+
 bar {
-    status_command python /home/erkanmdr/.config/i3/i3pystatus
+	tray_padding 1
+	height 15
+        strip_workspace_numbers yes
+    	status_command python /home/erkanmdr/.config/i3/i3pystatus
 	position top
 	colors {
 		background $koyugri
 		statusline $beyaz
-		separator $acikgri
+		separator $anarenk
 		focused_workspace  $anarenk		$anarenk 	$beyaz
 		active_workspace   $siyah		$siyah		$beyaz
 		inactive_workspace $koyugri		$koyugri	$acikgri
 		urgent_workspace   #ff00000		#424242		$beyaz
-    	   }
+		}
 }
 
 
 #Gaps
-gaps inner 5
-gaps outer 5
+gaps inner 3
+gaps outer 3

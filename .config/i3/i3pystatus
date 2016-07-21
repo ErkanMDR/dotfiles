@@ -5,14 +5,12 @@ from i3pystatus import Status
 status = Status(standalone=True)
 
 status.register("clock",
-    format="%d.%m.%y %H:%M",)
+    format="%H:%M",)
 #https://media.readthedocs.org/pdf/i3pystatus/latest/i3pystatus.pdf
 
 status.register("battery",
-format="	%{percentage:.4f}]",)
-#buda olabilir [{percentage_design:.2f}%
+format="%{percentage:.0f}]",)
 
-#
 
 #status.register("disk",
 #	path="/",
@@ -34,7 +32,7 @@ format="	%{percentage:.4f}]",)
 
 
 status.register("alsa",
-format=" {volume}",)
+format="ses {volume}",)
 
 
 
