@@ -23,7 +23,9 @@ bindsym $mod+Shift+t exec urxvt
 # kill focused window
 bindsym $mod+q kill
 
-bindsym $mod+d exec --no-startup-id dmenu_run -sb "$anarenk" -nf "$beyaz" -nb "$koyugri" -fn "bitocrafull-medium-r-normal--11-"
+
+bindsym $mod+d exec --no-startup-id dmenu_run -aaron-bitocrafull-medium-r-normal--11-100-72-72-m-*-iso10646-1
+
 
 bindsym $mod+j focus left
 bindsym $mod+k focus down
@@ -119,6 +121,27 @@ mode "boyutlandır" {
 bindsym $mod+r mode "boyutlandır"
 
 
+
+# SS Çek
+
+$
+mode "ss" {
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+bindsym $mod+ctrl+s mode "ss"
+
+
+
+
+
+
+
 # Pencere 
 new_window pixel 2
 new_float pixel 2
@@ -149,7 +172,7 @@ bar {
 	colors {
 		background $koyugri
 		statusline $beyaz
-		separator #555555
+		separator $anarenk
 		focused_workspace  $anarenk		$anarenk 	$beyaz
 		active_workspace   $siyah		$siyah		$beyaz
 		inactive_workspace $koyugri		$koyugri	$acikgri

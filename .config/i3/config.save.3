@@ -19,11 +19,16 @@ font pango:bitocrafull, icons 8
 floating_modifier $mod
 
 bindsym $mod+Shift+t exec urxvt
+bindsym $mod+t exec urxvt --geometry
+
+
 
 # kill focused window
 bindsym $mod+q kill
 
-bindsym $mod+d exec --no-startup-id dmenu_run -sb "$anarenk" -nf "$beyaz" -nb "$koyugri" -fn "bitocrafull-medium-r-normal--11-"
+
+bindsym $mod+d exec --no-startup-id dmenu_run -sb "$anarenk" -nf "$beyaz" -nb "$koyugri" -fn "bitocrafull-medium-r-normal--11-100-72-72-m-*-iso10646-1"
+
 
 bindsym $mod+j focus left
 bindsym $mod+k focus down
@@ -149,7 +154,7 @@ bar {
 	colors {
 		background $koyugri
 		statusline $beyaz
-		separator #555555
+		separator $anarenk
 		focused_workspace  $anarenk		$anarenk 	$beyaz
 		active_workspace   $siyah		$siyah		$beyaz
 		inactive_workspace $koyugri		$koyugri	$acikgri
