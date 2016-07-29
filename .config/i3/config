@@ -13,11 +13,39 @@ client.focused		$anarenk $anarenk $beyaz   $anarenk
 client.focused_inactive	$anarenk $koyugri $siyah   $koyugri	
 client.unfocused	$anarenk $koyugri $anarenk $koyugri 
 
-exec --no-startup-id feh --bg-scale /home/erkanmdr/resimler/orman.jpg
+# Çalışma Alanları
+set $w1 1:www
+set $w2 2:konsol
+set $w3 3:ide
+set $w4 4:serbest
+set $w5 5:sdl
+set $w6 6:komünikasyon
+set $w7 7:kontrol
+set $w8 8:manipülasyon
+set $w9 9:interaktif
+set $w10 10:kuyu
 
+# Hızlı Değiştirici
+bindsym Mod1+Tab workspace next
+bindsym Mod1+Shift+Tab workspace prev
+bindsym $mod+Tab workspace back_and_forth
+
+
+# Pencere Kuralları
+assign [class="inox"]      		→ $w1
+assign [class="jetbrains-idea-ce"]      → $w3
+assign [class="^telegram-desktop$"]  	→ $w4
+assign [class="^Steam$"]  		→ $w4
+assign [class="^dota2$"]  		→ $w5
+
+# Duvarkağıdı
+exec --no-startup-id feh --bg-scale /home/erkanmdr/resim/orman.jpg
+exec --no-startuo-id xgamma -gamma 0.85
+
+# Yazı Tipleri
 font pango:bitocrafull, icons 8
-floating_modifier $mod
 
+floating_modifier $mod
 bindsym $mod+Shift+t exec urxvt
 
 # kill focused window
@@ -54,6 +82,8 @@ bindsym $mod+h split h
 # split in vertical orientation
 bindsym $mod+v split v
 
+bindsym $mod+Shift+r restartconk
+
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
 
@@ -74,37 +104,50 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
+
 # switch to workspace
-bindsym $mod+1 workspace 1
-bindsym $mod+2 workspace 2
-bindsym $mod+3 workspace 3
-bindsym $mod+4 workspace 4
-bindsym $mod+5 workspace 5
-bindsym $mod+6 workspace 6
-bindsym $mod+7 workspace 7
-bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace 9
-bindsym $mod+0 workspace 10
+bindsym $mod+1 workspace $w1
+bindsym $mod+2 workspace $w2
+bindsym $mod+3 workspace $w3
+bindsym $mod+4 workspace $w4
+bindsym $mod+5 workspace $w5
+bindsym $mod+6 workspace $w6
+bindsym $mod+7 workspace $w7
+bindsym $mod+8 workspace $w8
+bindsym $mod+9 workspace $w9
+bindsym $mod+0 workspace $w10
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace 1
-bindsym $mod+Shift+2 move container to workspace 2
-bindsym $mod+Shift+3 move container to workspace 3
-bindsym $mod+Shift+4 move container to workspace 4
-bindsym $mod+Shift+5 move container to workspace 5
-bindsym $mod+Shift+6 move container to workspace 6
-bindsym $mod+Shift+7 move container to workspace 7
-bindsym $mod+Shift+8 move container to workspace 8
-bindsym $mod+Shift+9 move container to workspace 9
-bindsym $mod+Shift+0 move container to workspace 10
+bindsym $mod+Shift+1 move container to workspace $w1
+bindsym $mod+Shift+2 move container to workspace $w2
+bindsym $mod+Shift+3 move container to workspace $w3
+bindsym $mod+Shift+4 move container to workspace $w4
+bindsym $mod+Shift+5 move container to workspace $w5
+bindsym $mod+Shift+6 move container to workspace $w6
+bindsym $mod+Shift+7 move container to workspace $w7
+bindsym $mod+Shift+8 move container to workspace $w8
+bindsym $mod+Shift+9 move container to workspace $w9
+bindsym $mod+Shift+0 move container to workspace $w10
+
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
+
+
+set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+mode "$mode_system" {
+    bindsym l exec --no-startup-id $i3_path/i3exit lock, mode "default"
+    bindsym e exec --no-startup-id $i3_path/i3exit logout, mode "default"
+    bindsym s exec --no-startup-id $i3_path/i3exit suspend, mode "default"
+    bindsym h exec --no-startup-id $i3_path/i3exit hibernate, mode "default"
+    bindsym r exec --no-startup-id $i3_path/i3exit reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id $i3_path/i3exit shutdown, mode "default"
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+Shift+e mode "$mode_system"
 
 # Yeniden Boyutlandır
 mode "boyutlandır" {
@@ -143,7 +186,7 @@ bindsym Ctrl+$mod+3 exec telegram-desktop
 bar {
 	tray_padding 1
 	height 15
-        strip_workspace_numbers yes
+        strip_workspace_numbers no
     	status_command python /home/erkanmdr/.config/i3/i3pystatus
 	position top
 	colors {
@@ -153,7 +196,7 @@ bar {
 		focused_workspace  $anarenk		$anarenk 	$beyaz
 		active_workspace   $siyah		$siyah		$beyaz
 		inactive_workspace $koyugri		$koyugri	$acikgri
-		urgent_workspace   #ff00000		#424242		$beyaz
+		urgent_workspace   $anarenk		$siyah		$anarenk
 		}
 }
 
@@ -166,3 +209,47 @@ gaps outer 3
 # Otomatik Başlat
 #exec --no-startup-id telegram-desktop -startintray
 
+
+# Gaps Ayarları
+set $mode_gaps boşluklar: (g) içerden, (h) dışardan
+set $mode_gaps_outer dış boşluklar: w|s|d|0 (yerel), Shift + w|s|d|0 (genel)
+set $mode_gaps_inner iç boşluklar: w|s|d|0 (yerel), Shift + w|s|d|0 (genel)
+
+bindsym $mod+g mode "$mode_gaps"
+
+mode "$mode_gaps" {
+        bindsym h      mode "$mode_gaps_outer"
+        bindsym g      mode "$mode_gaps_inner"
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+ 
+mode "$mode_gaps_inner" {
+        bindsym w  gaps inner current plus 5
+        bindsym s  gaps inner current minus 5
+        bindsym 0  gaps inner current set 0
+        bindsym d  gaps inner current set $default_gaps_inner
+ 
+        bindsym Shift+w     gaps inner all plus 5
+        bindsym Shift+s     gaps inner all minus 5
+        bindsym Shift+0     gaps inner all set 0
+        bindsym Shift+d     gaps inner all set $default_gaps_inner
+ 
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+mode "$mode_gaps_outer" {
+        bindsym w     gaps outer current plus 5
+        bindsym s     gaps outer current minus 5
+        bindsym 0     gaps outer current set 0
+        bindsym d     gaps outer current set $default_gaps_outer
+ 
+        bindsym Shift+w     gaps outer all plus 5
+        bindsym Shift+s     gaps outer all minus 5
+        bindsym Shift+0     gaps outer all set 0
+        bindsym Shift+d     gaps outer all set $default_gaps_outer
+ 
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}

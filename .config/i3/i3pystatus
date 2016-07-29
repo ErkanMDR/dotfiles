@@ -13,15 +13,28 @@ status.register(
 )
 
 status.register(
+        "clock",
+        hints = {"markup": "pango"},
+        format="%d<span color='#d64937'>.</span>%m<span color='#d64937'>.</span>%y",
+)
+
+
+status.register(
 	"battery",
         hints = {"markup": "pango"},
         format = "<span color='#d64937'>pil</span>{percentage:.0f}]",
+	charging_color = "#5cd65c",
+        full_color = "#adebad",
+	critical_color = "#d64937",
+	alert_percentage = 15,
+
 )
 
 status.register(
-	"alsa",
+	"pulseaudio",
         hints = {"markup": "pango"},
         format = "<span color='#d64937'>ses</span>{volume}",
+	color_muted= "#d64937",
 )
 
 status.register(
@@ -29,7 +42,7 @@ status.register(
         hints = {"markup": "pango"},
 	format = "<span color='#d64937'>lcd</span>{percentage}",
 	backlight="intel_backlight",
-	interval=10,
+	interval=1,
 )
 
 status.register(
@@ -54,6 +67,13 @@ status.register(
 	interval = 5,
         color = beyaz,
 )
+
+#status.register(
+#        "pomodoro",
+#        hints = {"markup": "pango"},
+#	sound = "/home/erkanmdr/müzik/Anime/Evangelion/Neon Genesis Evangelion/18 The Beast.mp3",
+#        format = "<span color='#d64937'>pom</span> {current_pomodoro}/{total_pomodoro} {time}",
+#)
 
 status.register(
         "cmus",
