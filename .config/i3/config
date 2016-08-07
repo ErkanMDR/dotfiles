@@ -37,6 +37,9 @@ assign [class="jetbrains-idea-ce"]      → $w3
 assign [class="^telegram-desktop$"]  	→ $w4
 assign [class="^Steam$"]  		→ $w4
 assign [class="^dota2$"]  		→ $w5
+for_window [class="java"] floating enable
+
+
 
 # Duvarkağıdı
 exec --no-startup-id feh --bg-scale /home/erkanmdr/resim/orman.jpg
