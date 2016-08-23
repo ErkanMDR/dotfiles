@@ -1,5 +1,4 @@
 import subprocess
-
 from i3pystatus import Status
 
 status = Status(standalone=True)
@@ -42,7 +41,8 @@ status.register(
         hints = {"markup": "pango"},
 	format = "<span color='#d64937'>lcd</span>{percentage}",
 	backlight="intel_backlight",
-	interval=1,
+	interval=5,
+	on_rightclick="sleep 0.1 && xset -display :0.0 dpms force off",
 )
 
 status.register(
@@ -81,8 +81,5 @@ status.register(
         format = "<span color='#d64937'>{artist}</span>{title}",
 	format_not_running = "",
 )
-
-
-
 
 status.run()

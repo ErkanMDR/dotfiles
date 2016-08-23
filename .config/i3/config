@@ -1,114 +1,118 @@
+## i3-gaps config ##
+
+# ana tuş (süper)
 set $mod Mod4
 
+# uygulama başlatıcı
+bindsym Ctrl+$mod+1	exec chromium
+bindsym Ctrl+$mod+2	exec thunar
+bindsym Ctrl+$mod+3	exec telegram-desktop
+bindsym Ctrl+$mod+6	exec vboxsdl --startvm eval
+bindsym $mod+Shift+t	exec urxvt
+bindsym $mod+d		exec --no-startup-id dmenu_run -sb "$anarenk" -nf "$beyaz" -nb "$koyugri" -fn "bitocrafull-medium-r-normal--11-"
 
-# Renkler
+# pencere kuralları
+assign [class="inox"]			$w1
+assign [class="jetbrains-idea-ce"]	$w3
+assign [class="jetbrains-idea"]		$w3
+assign [class="^telegram-desktop$"]	$w4
+assign [class="^Steam$"]		$w4
+assign [title="Steam"]			$w4
+assign [class="^dota2$"]		$w5
+assign [class="VBoxSDL"]		$w6
+for_window [class="^Dunst$"] floating enable, border pixel 5
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="(?i)telegram"] floating enable
+for_window [class="org.travium.ui.ArayuzBaslatici"] floating enable
+for_window [class="^Steam$"] border none
+
+
+# çalışma alanları
+set $w1 1:www
+set $w2 2:konsol
+set $w3 3:ide
+set $w4 4:serbest
+set $w5 5:sdl
+set $w6 6:eval
+set $w7 7:kontrol
+set $w8 8:manipülasyon
+set $w9 9:interaktif
+set $w10 10:kuyu
+
+# otomatik başlatıcı
+exec --no-startup-id feh --bg-scale /home/erkanmdr/resim/pink.jpg
+exec --no-startup-id nm-applet
+exec --no-startup-id sleep 1 && xgamma -gamma 0.85
+exec --no-startup-id dunst
+
+# renkler
 set $beyaz	#f9f9f9
 set $acikgri	#dedede
 set $anarenk	#d64937
 set $koyugri	#333333
 set $siyah	#2d2d2d
 
-# Pencere Renkler
-client.focused		$anarenk $anarenk $beyaz   $anarenk
-client.focused_inactive	$anarenk $koyugri $siyah   $koyugri	
-client.unfocused	$anarenk $koyugri $anarenk $koyugri 
+# boşluklar
+gaps inner 3
+gaps outer 3
 
-# Çalışma Alanları
-set $w1 1:www
-set $w2 2:konsol
-set $w3 3:ide
-set $w4 4:serbest
-set $w5 5:sdl
-set $w6 6:komünikasyon
-set $w7 7:kontrol
-set $w8 8:manipülasyon
-set $w9 9:interaktif
-set $w10 10:kuyu
+# pencere renkleri
+client.focused		$anarenk $anarenk $beyaz $anarenk
+client.focused_inactive	$anarenk $koyugri $siyah $koyugri
+client.unfocused	$anarenk $koyugri $anarenk $koyugri
 
-# Hızlı Değiştirici
+# hızlı değiştirici
 bindsym Mod1+Tab workspace next
 bindsym Mod1+Shift+Tab workspace prev
 bindsym $mod+Tab workspace back_and_forth
 
-
-# Pencere Kuralları
-assign [class="inox"]      		→ $w1
-assign [class="jetbrains-idea-ce"]      → $w3
-assign [class="^telegram-desktop$"]  	→ $w4
-assign [class="^Steam$"]  		→ $w4
-assign [class="^dota2$"]  		→ $w5
-for_window [class="java"] floating enable
-
-
-
-# Duvarkağıdı
-exec --no-startup-id feh --bg-scale /home/erkanmdr/resim/orman.jpg
-exec --no-startuo-id xgamma -gamma 0.85
-
-# Yazı Tipleri
+# yazı tipi
 font pango:bitocrafull, icons 8
 
+# floatin mod değiştirici
 floating_modifier $mod
-bindsym $mod+Shift+t exec urxvt
 
-# kill focused window
+# pencereyi kapat
 bindsym $mod+q kill
 
-bindsym $mod+d exec --no-startup-id dmenu_run -sb "$anarenk" -nf "$beyaz" -nb "$koyugri" -fn "bitocrafull-medium-r-normal--11-"
-
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+scedilla focus right
-
-# alternatively, you can use the cursor keys:
+# pencere seç
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
-# move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+scedilla move right
-
-# alternatively, you can use the cursor keys:
+# pencere taşı
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-# split in horizontal orientation
+# dikey/yatay olarak değiştir
 bindsym $mod+h split h
-
-# split in vertical orientation
 bindsym $mod+v split v
 
+# yeniden başlat
 bindsym $mod+Shift+r restartconk
 
-# enter fullscreen mode for the focused container
+# tam ekran
 bindsym $mod+f fullscreen toggle
 
-# change container layout (stacked, tabbed, toggle split)
+# pencere modu değiştir (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
-# toggle tiling / floating
+# pencere modu değiştir (tiling, floating)
 bindsym $mod+Shift+space floating toggle
 
-# change focus between tiling / floating windows
+# odağı değiştir (tiling, floating)
 bindsym $mod+space focus mode_toggle
 
-# focus the parent container
+# çoklu pencere seçimi
 bindsym $mod+a focus parent
+bindsym $mod+z focus child
 
-# focus the child container
-#bindsym $mod+d focus child
-
-
-# switch to workspace
+# çalışma alanı değiştirici
 bindsym $mod+1 workspace $w1
 bindsym $mod+2 workspace $w2
 bindsym $mod+3 workspace $w3
@@ -120,7 +124,7 @@ bindsym $mod+8 workspace $w8
 bindsym $mod+9 workspace $w9
 bindsym $mod+0 workspace $w10
 
-# move focused container to workspace
+# pencereyi çalışma alanına taşı
 bindsym $mod+Shift+1 move container to workspace $w1
 bindsym $mod+Shift+2 move container to workspace $w2
 bindsym $mod+Shift+3 move container to workspace $w3
@@ -132,127 +136,79 @@ bindsym $mod+Shift+8 move container to workspace $w8
 bindsym $mod+Shift+9 move container to workspace $w9
 bindsym $mod+Shift+0 move container to workspace $w10
 
-
-# reload the configuration file
+# config dosyasını yeniden yükle
 bindsym $mod+Shift+c reload
 
-
-
-set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
-mode "$mode_system" {
-    bindsym l exec --no-startup-id $i3_path/i3exit lock, mode "default"
-    bindsym e exec --no-startup-id $i3_path/i3exit logout, mode "default"
-    bindsym s exec --no-startup-id $i3_path/i3exit suspend, mode "default"
-    bindsym h exec --no-startup-id $i3_path/i3exit hibernate, mode "default"
-    bindsym r exec --no-startup-id $i3_path/i3exit reboot, mode "default"
-    bindsym Shift+s exec --no-startup-id $i3_path/i3exit shutdown, mode "default"
-    # back to normal: Enter or Escape
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-bindsym $mod+Shift+e mode "$mode_system"
-
-# Yeniden Boyutlandır
+# yeniden boyutlandır
 mode "boyutlandır" {
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
-
+        bindsym Left	resize shrink width 2 px or 2 ppt
+        bindsym Down	resize grow height 2 px or 2 ppt
+        bindsym Up	resize shrink height 2 px or 2 ppt
+        bindsym Right	resize grow width 2 px or 2 ppt
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
 bindsym $mod+r mode "boyutlandır"
 
-
-# Pencere 
+# pencere kenarlıkları
 new_window pixel 2
 new_float pixel 2
 
-# Scrot
+# scrot
 bindsym --release Ctrl+Shift+S exec --no-startup-id scrot -s -q 100 /tmp/s.png && xclip -selection clipboard -target image/png -i /tmp/s.png && rm /tmp/s.png
 bindsym --release Ctrl+Alt+S  exec --no-startup-id scrot -u -q 100 /tmp/s.png && xclip -selection clipboard -target image/png -i /tmp/s.png && rm /tmp/s.png
 bindsym --release Ctrl+S exec --no-startup-id scrot -q 100 /tmp/s.png && xclip -selection clipboard -target image/png -i /tmp/s.png && rm /tmp/s.png
 
-
-# Pencere Kuralları
-for_window [window_role="pop-up"] floating enable
-for_window [window_role="(?i)telegram"] floating enable
-
-
-# Uygulama Başlatıcı
-bindsym Ctrl+$mod+1 exec inox
-bindsym Ctrl+$mod+2 exec spacefm
-bindsym Ctrl+$mod+3 exec telegram-desktop
-
-
+# bar
 bar {
 	tray_padding 1
 	height 15
-        strip_workspace_numbers no
-    	status_command python /home/erkanmdr/.config/i3/i3pystatus
+	strip_workspace_numbers no
+	status_command python /home/erkanmdr/.config/i3/i3pystatus
 	position top
 	colors {
 		background $koyugri
 		statusline $beyaz
 		separator #555555
-		focused_workspace  $anarenk		$anarenk 	$beyaz
-		active_workspace   $siyah		$siyah		$beyaz
-		inactive_workspace $koyugri		$koyugri	$acikgri
-		urgent_workspace   $anarenk		$siyah		$anarenk
+		focused_workspace  $anarenk	$anarenk	$beyaz
+		active_workspace   $siyah	$siyah		$beyaz
+		inactive_workspace $koyugri	$koyugri	$acikgri
+		urgent_workspace   $anarenk	$siyah		$anarenk
 		}
 }
 
-
-# Gaps
-gaps inner 3
-gaps outer 3
-
-
-# Otomatik Başlat
-#exec --no-startup-id telegram-desktop -startintray
-
-
-# Gaps Ayarları
+# gaps ayarları
 set $mode_gaps boşluklar: (g) içerden, (h) dışardan
 set $mode_gaps_outer dış boşluklar: w|s|d|0 (yerel), Shift + w|s|d|0 (genel)
 set $mode_gaps_inner iç boşluklar: w|s|d|0 (yerel), Shift + w|s|d|0 (genel)
-
 bindsym $mod+g mode "$mode_gaps"
-
 mode "$mode_gaps" {
-        bindsym h      mode "$mode_gaps_outer"
-        bindsym g      mode "$mode_gaps_inner"
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
+	bindsym h mode "$mode_gaps_outer"
+	bindsym g mode "$mode_gaps_inner"
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
 }
- 
 mode "$mode_gaps_inner" {
-        bindsym w  gaps inner current plus 5
-        bindsym s  gaps inner current minus 5
-        bindsym 0  gaps inner current set 0
-        bindsym d  gaps inner current set $default_gaps_inner
- 
-        bindsym Shift+w     gaps inner all plus 5
-        bindsym Shift+s     gaps inner all minus 5
-        bindsym Shift+0     gaps inner all set 0
-        bindsym Shift+d     gaps inner all set $default_gaps_inner
- 
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
+	bindsym w  gaps inner current plus 5
+	bindsym s gaps inner current minus 5
+	bindsym 0 gaps inner current set 0
+	bindsym d gaps inner current set 3
+	bindsym Shift+w gaps inner all plus 5
+	bindsym Shift+s gaps inner all minus 5
+	bindsym Shift+0 gaps inner all set 0
+	bindsym Shift+d gaps inner all set 3
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
 }
-
 mode "$mode_gaps_outer" {
-        bindsym w     gaps outer current plus 5
-        bindsym s     gaps outer current minus 5
-        bindsym 0     gaps outer current set 0
-        bindsym d     gaps outer current set $default_gaps_outer
- 
-        bindsym Shift+w     gaps outer all plus 5
-        bindsym Shift+s     gaps outer all minus 5
-        bindsym Shift+0     gaps outer all set 0
-        bindsym Shift+d     gaps outer all set $default_gaps_outer
- 
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
+	bindsym w gaps outer current plus 5
+	bindsym s gaps outer current minus 5
+	bindsym 0 gaps outer current set 0
+	bindsym d gaps outer current set 3
+	bindsym Shift+w gaps outer all plus 5
+	bindsym Shift+s gaps outer all minus 5
+	bindsym Shift+0 gaps outer all set 0
+	bindsym Shift+d gaps outer all set 3
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
 }
