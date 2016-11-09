@@ -1,10 +1,11 @@
-## i3-gaps config ##
+## ErkanMDR'nin i3-gaps config'i ##
+
 
 # ana tuş (süper)
 set $mod Mod4
 
 # uygulama başlatıcı
-bindsym Ctrl+$mod+1	exec chromium
+bindsym Ctrl+$mod+1	exec inox
 bindsym Ctrl+$mod+2	exec thunar
 bindsym Ctrl+$mod+3	exec telegram-desktop
 bindsym Ctrl+$mod+6	exec vboxsdl --startvm eval
@@ -40,6 +41,7 @@ set $w9 9:interaktif
 set $w10 10:kuyu
 
 # otomatik başlatıcı
+exec --no-startup-id setxkbmap tr
 exec --no-startup-id feh --bg-scale /home/erkanmdr/resim/pink.jpg
 exec --no-startup-id nm-applet
 exec --no-startup-id sleep 1 && xgamma -gamma 0.85

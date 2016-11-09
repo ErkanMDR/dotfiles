@@ -18,16 +18,16 @@ status.register(
 )
 
 
-status.register(
-	"battery",
-        hints = {"markup": "pango"},
-        format = "<span color='#d64937'>pil</span>{percentage:.0f}]",
-	charging_color = "#5cd65c",
-        full_color = "#adebad",
-	critical_color = "#d64937",
-	alert_percentage = 15,
-
-)
+#status.register(
+#	"battery",
+#        hints = {"markup": "pango"},
+#        format = "<span color='#d64937'>pil</span>{percentage:.0f}]",
+#	charging_color = "#5cd65c",
+#        full_color = "#adebad",
+#	critical_color = "#d64937",
+#	alert_percentage = 15,
+#
+#)
 
 status.register(
 	"pulseaudio",
@@ -36,14 +36,14 @@ status.register(
 	color_muted= "#d64937",
 )
 
-status.register(
-	"backlight",
-        hints = {"markup": "pango"},
-	format = "<span color='#d64937'>lcd</span>{percentage}",
-	backlight="intel_backlight",
-	interval=5,
-	on_rightclick="sleep 0.1 && xset -display :0.0 dpms force off",
-)
+#status.register(
+#	"backlight",
+#        hints = {"markup": "pango"},
+#	format = "<span color='#d64937'>lcd</span>{percentage}",
+#	backlight="intel_backlight",
+#	interval=5,
+#	on_rightclick="sleep 0.1 && xset -display :0.0 dpms force off",
+#)
 
 status.register(
         "mem",
@@ -60,19 +60,12 @@ status.register(
         color = beyaz,
 )
 
-status.register(
-        "temp",
-        hints = {"markup": "pango"},
-        format = "<span color='#d64937'>ısı</span>{temp:.0f}",
-	interval = 5,
-        color = beyaz,
-)
-
 #status.register(
-#        "pomodoro",
+#        "temp",
 #        hints = {"markup": "pango"},
-#	sound = "/home/erkanmdr/müzik/Anime/Evangelion/Neon Genesis Evangelion/18 The Beast.mp3",
-#        format = "<span color='#d64937'>pom</span> {current_pomodoro}/{total_pomodoro} {time}",
+#        format = "<span color='#d64937'>ısı</span>{temp:.0f}",
+#	interval = 5,
+#        color = beyaz,
 #)
 
 status.register(
